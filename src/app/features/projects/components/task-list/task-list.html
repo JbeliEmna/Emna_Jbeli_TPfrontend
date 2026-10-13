@@ -22,9 +22,11 @@
           @if (task.dueDate) {
             <span>{{ task.dueDate | date : 'dd/MM/yyyy' }}</span>
           }
-          <span class="rounded px-1.5 py-0.5 font-medium" [class]="deadlineClass(task)">
-            {{ task.dueDate | deadline }}
-          </span>
+          @if (task.status !== 'Terminé') {
+            <span class="rounded px-1.5 py-0.5 font-medium" [class]="deadlineClass(task)">
+              {{ task.dueDate | deadline }}
+            </span>
+          } 
           @if (showAssignee()) {
             <span>Assigné à : {{ assigneeName(task.assigneeId) }}</span>
           }
