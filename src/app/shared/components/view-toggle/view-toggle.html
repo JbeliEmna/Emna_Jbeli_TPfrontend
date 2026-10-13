@@ -1,0 +1,18 @@
+<div class="inline-flex rounded-lg bg-slate-100 p-1" role="group" aria-label="Choisir la vue">
+  <button
+    type="button"
+    class="rounded-md px-3 py-1.5 text-sm font-semibold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700"
+    [class]="buttonClass('task')"
+    [attr.aria-pressed]="view() === 'task'"
+    (click)="select('task')">
+    Par tâche
+  </button>
+  <button
+    type="button"
+    class="rounded-md px-3 py-1.5 text-sm font-semibold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700"
+    [class]="buttonClass('user')"
+    [attr.aria-pressed]="view() === 'user'"
+    (click)="select('user')">
+    Par user
+  </button>
+</div>

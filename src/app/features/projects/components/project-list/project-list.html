@@ -1,0 +1,38 @@
+<section class="space-y-6">
+  <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+    <div>
+      <h2 class="text-2xl font-extrabold text-slate-900">Projets</h2>
+      <p class="text-sm text-slate-500">{{ filteredProjects().length }} projet(s) affiché(s)</p>
+    </div>
+
+    <div class="relative w-full sm:max-w-xs">
+      <svg class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
+           viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" />
+      </svg>
+      <input
+        type="text"
+        aria-label="Rechercher un projet"
+        class="w-full rounded-lg border border-slate-300 bg-white py-2 pl-9 pr-3 text-sm placeholder:text-slate-400 focus:border-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-700/20"
+        placeholder="Rechercher un projet..."
+        [(ngModel)]="searchTerm" />
+    </div>
+  </div>
+
+  <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+    @for (project of filteredProjects(); track project.id) {
+      <app-project-card
+        [project]="project"
+        (projectSelected)="onProjectSelected($event)">
+      </app-project-card>
+    } @empty {
+      <div class="col-span-full">
+        <app-empty-state
+          title="Aucun projet trouvé"
+          message="Essayez avec un autre nom de projet.">
+        </app-empty-state>
+      </div>
+    }
+  </div>
+</section>
